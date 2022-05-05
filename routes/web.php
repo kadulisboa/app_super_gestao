@@ -13,14 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "Olá Mundo";
-});
+Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal']);
+Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos']);
+Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato']);
 
-Route::get('/sobre-nos', function () {
-    return "Olá Mundo, aqui é sobre nós";
-});
+Route::prefix('/app')->group(function () {
+    Route::get('/login', function () {
+        echo 'Login View';
+    });
 
-Route::get('/contato', function () {
-    return "Olá Mundo, aqui é contato";
+    Route::get('/fornecedores', function () {
+        echo 'Fornecedores';
+    });
+
+    Route::get('/clientes', function () {
+        echo 'Clientes';
+    });
+
+    Route::get('/produtos', function () {
+        echo 'Produtos';
+    });
 });
